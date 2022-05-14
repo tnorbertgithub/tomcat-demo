@@ -15,9 +15,9 @@ node {
     stage('mvn-package') {
         sh "${mvnHome}/bin/mvn package"
     }
-    stage('sonar analysis') { 
-        withsonarQubeEnv('SonarQube') {
-            sh "${mvnHome}/bin/mvn sonar:sonar"
+    stage('sonar-analysis') { 
+        withsonarQubeEnv(credentialsId: 'sonar-token') {
+        sh "${mvnHome}/bin/mvn sonar:sonar"
        }
     }
 }
